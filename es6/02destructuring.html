@@ -16,17 +16,21 @@
 			console.log(a, b); //1,2
 			console.log(c, d); //3,4
 
+			// 2、右边必须是个合法的东西
 			let {e, f} = {5, 6}
 			console.log(e, f); //Uncaught SyntaxError: Unexpected token ,
 
+			// 3、声明和赋值必须同时完成
 			let [h, i]
 			[h, i] = [7, 8]
 			console.log(h, i); //Uncaught SyntaxError: Missing initializer in destructuring declaration
 
-			// let [a,b,c] = [1, {a: {m: 2, n: 3}, b: 4, c: 5}, 6];
-			// console.log(a, b, c);
-			// let [m, {a, b, c}, n] = [1, {a: {m: 2, n: 3}, b: 4, c: 5}, 6];
-			// console.log(m ,a, b, c, n);
+			// 4、粒度
+			let [a,b,c] = [1, {a: {m: 2, n: 3}, b: 4, c: 5}, 6];
+			console.log(a, b, c); //1, {a: {m: 2, n: 3}, b: 4, c: 5}, 6
+			let [m, {a, b, c}, n] = [1, {a: {m: 2, n: 3}, b: 4, c: 5}, 6];
+			console.log(m ,a, b, c, n); //1 {m: 2, n: 3} 4 5 6
+			
 		}
 	</script>
 </body>

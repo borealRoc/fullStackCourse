@@ -13,32 +13,35 @@
 			// 1. let块级作用域的运用:for循环
 			
 			// 1.1 i只在for循环体内有效，在循环体外引用就会报错
-			// for (let i = 0; i < 10; i ++) {
+			for (let i = 0; i < 10; i ++) {
 
-			// }
-			// console.log(i); 
-			//01letAndConst.html:16 Uncaught ReferenceError: i is not defined
+			}
+			console.log(i); //Uncaught ReferenceError: i is not defined
 
-			// 1.2 
+			// 1.2 变量i是let声明的，当前的i只在本轮循环有效，所以每一次循环的i其实都是一个新的变量，所以最后输出的是2。如果每一轮循环的变量i都是重新声明的，那它怎么知道上一轮循环的值，从而计算出本轮循环的值？这是因为 JavaScript 引擎内部会记住上一轮循环的值，初始化本轮的变量i时，就在上一轮循环的基础上进行计算
 			let a = []
 			for (let i = 0; i  < 10; i ++) {
 				a[i] = function () {
 					console.log(i);
 				}
 			}
-			a[2]()
+			a[2]() //2
 
 			// 1.3 for循环还有一个特别之处，就是设置循环变量的那部分是一个父作用域，而循环体内部是一个单独的子作用域
 			for (let i = 0; i < 3; i++) {
 				let i = 'abc'
 				console.log(i)
 			}
+            // abc
+            // abc
+            // abc
 
 			// 2. const也有块级作用域
 			{
 				const b = 1;
 			}
 			alert(b);  //Uncaught ReferenceError: a is not defined
+
 		}
 	</script>
 </body>
