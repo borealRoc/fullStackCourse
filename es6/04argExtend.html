@@ -25,12 +25,15 @@
 			// 3、...第二个用途：展开对象
 			const obj1 = {a: 1}
 			const obj2 = {...obj1, b: 2}
-			console.log(obj2);
+			// 等价于
+			const obj2 = Object.assgin({}, obj1, {b: 2});
+			console.log(obj2); //{a: 1, b: 2}
 
 			// 4、...第三个用途：展开数组
 			const arr1 = [1, 2, 3]
 			const arr2 = [...arr1, 4, 5]
-		    console.log(arr2);
+		    console.log(arr2); //[1, 2, 3, 4, 5]
+
 		}
 	</script>
 </body>
