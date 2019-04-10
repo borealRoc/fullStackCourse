@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>数组的扩展：五种方法</title>
+	<style type="text/css">
+		div {
+			float: left;
+			width: 200px;
+			height: 200px;
+			margin: 10px;
+			background: #ccc;
+		}
+	</style>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<script type="text/javascript">
+		window.onload = () => {
+
+			const arr = [1, 2, 3, 4]
+
+			// 1、map：映射
+			const mapArr = arr.map(item => item + 2)
+			console.log(mapArr) //[3,4,5,6]
+
+			// 2、reduce：汇总
+			const avg = arr.reduce((tem, item, index) => {
+				if (index < arr.length -1) {
+					return tem + item
+				} else {
+					return (tem + item)/arr.length - 1
+				}
+			})
+			console.log(avg); //1.5
+
+			// 3、filter：过滤
+			const filterArr = arr.filter(item => item % 2)
+			console.log(filterArr); //[1,3]
+
+			// 4、forEach：遍历
+			const forEachArr = arr.forEach(item => {
+				console.log(item + 2)
+			})
+			console.log(forEachArr) //3,4,5,6
+
+			// 5、Array.from()：把类数组转化成数组
+			let divs = document.getElementsByTagName('div');
+			Array.from(divs).forEach(div => div.style.background = '#ea6542')
+			
+		}
+	</script>
+</body>
+</html>
