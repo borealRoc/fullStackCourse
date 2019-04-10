@@ -19,6 +19,44 @@
 			arr.sort((m, n) => m - n)
 			console.log(arr);  // [1, 4, 34]
 
+			// 3、无法访问argumetnts
+			const showArgs = (a, b, c) => {
+				console.log(arguments.length);
+			}
+			showArgs(1,2,3) //Uncaught ReferenceError: arguments is not defined
+
+			// 4、this恒定：根据所在的环境定(定义在谁身上，this就指定谁)
+			// 4.1、什么叫所在的环境
+			document.onclick = () => {alert(this)} //[object Window]
+			document.onclick = function () {
+				let arr = [1,2]
+				arr.a = () => {
+					alert(this)
+				}
+				arr.a() //[object HTMLDocument]
+			}
+			
+			// 4.2、this指向恒定
+			let arr2 = [1,2]
+			arr2.a = () => {
+				alert(this) 
+			}
+			arr2.a() //[object Window]
+
+			arr2.a = function () {
+				alert(this)
+			}
+			arr2.a() //1,2
+
+			//4.3、即使用bind,也无法改变箭头函数的this
+			document.onclick = function () {
+				let showThis = () => {
+					alert(this)
+				}
+				let arr = [1,2]
+				setTimeout(showThis.bind(arr), 50); //[object HTMLDocument]
+			}
+
 		}
 	</script>
 </body>
