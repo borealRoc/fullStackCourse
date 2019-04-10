@@ -10,10 +10,9 @@
 <body>
 	<script type="text/javascript">
 
-		let path1 = `../../resources/1.txt`
-		let path2 = `../../resources/2.txt`
-		let path3 = `../../resources/3.txt`
-
+		const path1 = `../../resources/1.txt`
+		const path2 = `../../resources/2.txt`
+		const path3 = `../../resources/3.txt`
 		Promise.all([
 			$.ajax({url: path1, dataType: 'json'}),
 			$.ajax({url: path2, dataType: 'json'}),

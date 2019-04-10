@@ -11,7 +11,7 @@
 	<script type="text/javascript">
 		
 		let p1 = new Promise((resolve, reject) => {
-			let path = 	`../../resources/1.txt`
+			const path = 	`../../resources/1.txt`
 			$.ajax({
 				url: path,
 				dataType: 'json',
@@ -25,7 +25,7 @@
 		})
 
 		let p2 = new Promise((resolve, reject) => {
-			let path = 	`../../resources/2.txt`
+			const path = 	`../../resources/2.txt`
 			$.ajax({
 				url: path,
 				dataType: 'json',
@@ -39,7 +39,7 @@
 		})
 
 		let p3 = new Promise((resolve, reject) => {
-			let path = 	`../../resources/3.txt`
+			const path = 	`../../resources/3.txt`
 			$.ajax({
 				url: path,
 				dataType: 'json',
