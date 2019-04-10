@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>对象扩展</title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+	<script type="text/javascript">
+		window.onload = () => {
+
+			const a = 3, b = 4
+
+			// 变化一：简写，如果属性和值相同
+			const newObj = {a, b}
+			// 等价于
+			// const newObj = {a: a, b: b}
+			console.log(newObj) //{a: 3, b: 4}
+
+			// 变化二：function可以不写
+			const obj1 = {
+				a: 1,
+				b: 2,
+				add() {
+					return this.a + this.b
+				}
+			}
+			console.log(obj1.add()) //3
+
+			// class: 面向对象
+			class Person {
+				constructor(name, age) {
+					this.name = name
+					this.age = age
+				}
+				showName() {
+					console.log(this.name);
+				}
+				showAge() {
+					console.log(this.age);
+				}
+			}
+			
+			//extends:继承方法
+			class Worker extends Person {
+				constructor(name, age, job) {
+					//super:超类（父类），继承属性
+					super(name, age)
+					this.job = job
+				}
+				showJob() {
+					console.log(this.job);
+				}
+			}
+
+			const w = new Worker('xu', 17, '打杂')
+			w.showName() //xu
+			w.showAge() //17
+			w.showJob() //打杂
+
+		}
+	</script>
+</body>
+</html>
