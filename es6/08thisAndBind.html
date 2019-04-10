@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>普通函数this的指向和bind</title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+	<script type="text/javascript">
+		window.onload = () => {
+
+			class Person {
+				constructor(name, age) {
+					this.name = name
+					this.age = age
+				}
+				showName() {
+					console.log(this);
+					console.log(this.name);
+				}
+				showAge() {
+					console.log(this);
+					console.log(this.age);
+				}
+			}
+
+			let p = new Person('xu', 17)
+			p.showName() //Person {name: "xu", age: 17} 'xu'
+			document.onclick = p.showName //document undefined
+			// 解决
+			// 方法一：
+			document.onclick = function () {
+				p.showName() //Person {name: "xu", age: 17} 'xu'
+			}
+			// 方法二：
+			document.onclick = p.showName.bind(p) //Person {name: "xu", age: 17} 'xu'
+
+			// Demo2
+			function show() {
+				alert(`this是${this}`)
+			}
+			document.onclick = show //this是[object HTMLDocument]
+			document.onclick = show.bind(12) //this是12
+			
+		}
+	</script>
+</body>
+</html>
