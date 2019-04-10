@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>参数扩展</title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+	<script type="text/javascript">
+		window.onload = () => {
+
+			// 1、默认参数
+			let show = (a = 1, b =2, c =3) => {
+				console.log(a);
+				console.log(b);
+				console.log(c);
+			}
+			show(4,5) //4, 5, 3
+
+			// 2、剩余参数：剩余参数的...必须放在最后
+			const add = (a, b, ...more) => more.reduce((m, n) => m + n) + a + b 
+			add(1, 2, 3, 4) //10
+
+			// 3、...第二个用途：展开对象
+			const obj1 = {a: 1}
+			const obj2 = {...obj1, b: 2}
+			console.log(obj2);
+
+			// 4、...第三个用途：展开数组
+			const arr1 = [1, 2, 3]
+			const arr2 = [...arr1, 4, 5]
+		    console.log(arr2);
+		}
+	</script>
+</body>
+</html>
