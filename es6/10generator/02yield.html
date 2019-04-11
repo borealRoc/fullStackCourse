@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>generator的传参与返回值</title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <script type="text/javascript">
+    // 1、传参
+    function* show1() {
+        alert(1)
+
+        let a = yield
+
+        alert(2 + a)
+    }
+
+    const gen1 = show1()
+    gen1.next() //1
+    gen1.next('参数') //2参数
+
+
+    // 2、返回值
+    function* show2() {
+        alert(3)
+
+        yield 4
+
+        alert(5)
+
+        return 6
+    }
+    const gen2 = show2()
+    const res1 = gen2.next() //3
+    console.log(res1) //{value: 4, done: false}
+    const res2 = gen2.next() //5
+    console.log(res2) //{value: 6, done: true}
+
+    // 3、又传参又返回值
+    function *show3() {
+    	alert(11)
+
+    	let {a, b} = yield 22
+
+    	alert(22 + a + b)
+    }
+    const gen3 = show3()
+    const res3 = gen3.next() //11
+    console.log(res3) //{value: 22, done: false}
+    gen3.next({a: 'haha', b: 'xixi'}) //22hahaxixi
+    </script>
+</body>
+
+</html>

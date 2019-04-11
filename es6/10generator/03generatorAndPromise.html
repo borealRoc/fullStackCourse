@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>generator和promise配合使用</title>
+	<link rel="stylesheet" href="">
+	<script src="../../lib/jquery.js"></script>
+	<script src="../../lib/runner.js"></script>
+</head>
+<body>
+	<script type="text/javascript">
+
+		const path1 = `../../resources/1.txt`
+		const path2 = `../../resources/2.txt`
+		const path3 = `../../resources/3.txt`
+
+		function *show () {
+			
+			const data1 = yield $.ajax({url: path1, dataType: 'json'})
+			console.log(data1);
+
+			if (data1.a + data1.b < 10) {
+				const data2 = yield $.ajax({url: path2, dataType: 'json'})
+				console.log(data2);
+			} else {
+				const data3 = yield $.ajax({url: path3, dataType: 'json'})
+				console.log(data3);
+			}
+		}
+
+		runner(show)
+	</script>
+</body>
+</html>
