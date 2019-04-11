@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>async/await配合ajax使用</title>
+	<link rel="stylesheet" href="">
+	<script src="../../lib/jquery.js"></script>
+</head>
+<body>
+	<script type="text/javascript">
+
+		const path1 = `../../resources/1.txt`;
+		const path2 = `../../resources/2.txt`;
+		const path3 = `../../resources/3.txt`;
+
+
+		(async ()=> {
+			let data1 = await $.ajax({url: path1, dataType: 'json'})
+			console.log(data1); //{"a": 3, "b": 5}
+			if (data1.a + data1.b < 10) {
+				let data2 = await $.ajax({url: path2, dataType: 'json'})
+				console.log(data2); // [12, 5, 8, 3]
+			} else {
+				let data3 = await $.ajax({url: path3, dataType: 'json'})
+				console.log(data3); //{"name": "blue", "age": 18}
+			}
+		})()
+
+
+	</script>
+</body>
+</html>
