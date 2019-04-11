@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>回调地狱的解决方式：Promise、generator和async/await的对比</title>
+    <script src="../../lib/jquery.js"></script>
+    <script src="../../lib/runner.js"></script>
+</head>
+
+<body>
+    <script type="text/javascript">
+
+        // 1、普通异步方式
+        // 优点：性能好
+        // 缺点：书写复杂
+        $.ajax({
+            // 请求一
+            url: path1, 
+            dataType: 'json',
+            success(data1) {
+                // 请求二
+                $.ajax({
+                    url: path2, 
+                    dataType: 'json',
+                    success(data2) {
+                        // 请求三
+                        $.ajax({
+                            url: path3, 
+                            dataType: 'json',
+                            success(data3) {
+
+                            },
+                            error(err) {
+                                
+                            }
+                        })
+                    },
+                    error(err) {
+                        
+                    }
+
+                })
+
+            },
+            error(err) {
+
+            }
+        })
+
+        // 2、同步方式
+        // 优点：简单明了
+        // 缺点：性能差
+        const data1 = $.ajax({url: path1, dataType: 'json'});
+        const data2 = $.ajax({url: path2, dataType: 'json'});
+        const data3 = $.ajax({url: path3, dataType: 'json'});
+
+        // 3、Promise对象
+        // 优点：相比普通异步，书写稍微简单
+        // 缺点：对于有依赖性的请求，处理复杂
+        Promise.all([
+            $.ajax({url: path1, dataType: 'json'}),
+            $.ajax({url: path2, dataType: 'json'}),
+            $.ajax({url: path3, dataType: 'json'})]).then(arr => {
+            let [data1, data2, data3] = arr
+        }, err => {
+
+        })
+
+        // 4、generator函数
+        // 优点：能处理有依赖性的请求
+        // 缺点：依赖外部文件
+        function *loadData() {
+            let data1 = yield $.ajax({url: path1, dataType: 'json'});
+            if (data1.a + data1.b > 10) {
+                let data2 = yield $.ajax({url: path2, dataType: 'json'});
+            } else {
+                let data3 = yield $.ajax({url: path3, dataType: 'json'});
+            }
+        }
+        runner(loadData)
+
+        // 5、async/await
+        // 优点：能处理有依赖性的请求，原生支持，不需要支持依赖外部文件，书写简单
+        (async () => {
+            let data1 = await $.ajax({url: path1, dataType: 'json'});
+            if (data1.a + data1.b > 10) {
+                let data2 = await $.ajax({url: path2, dataType: 'json'});
+            } else {
+                let data3 = yield $.ajax({url: path3, dataType: 'json'});
+            }
+        })()
+        
+    </script>
+</body>
+
+</html>
