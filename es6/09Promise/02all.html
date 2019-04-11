@@ -1,63 +1,65 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Promise.all用法</title>
-	<link rel="stylesheet" href="">
-	<script src="../../lib/jquery.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Promise.all用法</title>
+    <link rel="stylesheet" href="">
+    <script src="../../lib/jquery.js"></script>
 </head>
+
 <body>
-	<script type="text/javascript">
-		
-		let p1 = new Promise((resolve, reject) => {
-			const path = 	`../../resources/1.txt`
-			$.ajax({
-				url: path,
-				dataType: 'json',
-				success(data) {
-					resolve(data)
-				},
-				error(err) {
-					reject(err)
-				}
-			})
-		})
+    <script type="text/javascript">
+    let p1 = new Promise((resolve, reject) => {
+        const path = `../../resources/1.txt`
+        $.ajax({
+            url: path,
+            dataType: 'json',
+            success(data) {
+                resolve(data)
+            },
+            error(err) {
+                reject(err)
+            }
+        })
+    })
 
-		let p2 = new Promise((resolve, reject) => {
-			const path = 	`../../resources/2.txt`
-			$.ajax({
-				url: path,
-				dataType: 'json',
-				success(data) {
-					resolve(data)
-				},
-				error(err) {
-					reject(err)
-				}
-			})
-		})
+    let p2 = new Promise((resolve, reject) => {
+        const path = `../../resources/2.txt`
+        $.ajax({
+            url: path,
+            dataType: 'json',
+            success(data) {
+                resolve(data)
+            },
+            error(err) {
+                reject(err)
+            }
+        })
+    })
 
-		let p3 = new Promise((resolve, reject) => {
-			const path = 	`../../resources/3.txt`
-			$.ajax({
-				url: path,
-				dataType: 'json',
-				success(data) {
-					resolve(data)
-				},
-				error(err) {
-					reject(err)
-				}
-			})
-		})
+    let p3 = new Promise((resolve, reject) => {
+        const path = `../../resources/3.txt`
+        $.ajax({
+            url: path,
+            dataType: 'json',
+            success(data) {
+                resolve(data)
+            },
+            error(err) {
+                reject(err)
+            }
+        })
+    })
 
-		Promise.all([p1, p2, p3]).then(arr => {
-			let [arr1, arr2, arr3] = arr
-			console.log(arr1);
-			console.log(arr2);
-			console.log(arr3);
-		})
-	</script>
+    Promise.all([p1, p2, p3]).then(arr => {
+        let [arr1, arr2, arr3] = arr
+        console.log(arr1);
+        console.log(arr2);
+        console.log(arr3);
+    })
+    </script>
 </body>
+
 </html>

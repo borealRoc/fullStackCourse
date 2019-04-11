@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>jQuery的ajax是个Promise对象</title>
-	<link rel="stylesheet" href="">
-	<script src="../../lib/jquery.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>jQuery的ajax是个Promise对象</title>
+    <link rel="stylesheet" href="">
+    <script src="../../lib/jquery.js"></script>
 </head>
+
 <body>
-	<script type="text/javascript">
-
-		const path = 	`../../resources/1.txt`
-		$.ajax({
-			url: path,
-			dataType: 'json'
-		}).then(data => {
-			console.log(data);
-		}, err => {
-			console.log(err);
-		})
-
-	</script>
+    <script type="text/javascript">
+    const path = `../../resources/1.txt`
+    $.ajax({
+        url: path,
+        dataType: 'json'
+    }).then(data => {
+        console.log(data);
+    }, err => {
+        console.log(err);
+    })
+    </script>
 </body>
+
 </html>
