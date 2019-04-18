@@ -6,9 +6,10 @@ let server = http.createServer((req, res) => {
 		let path = `www${req.url}`
 		fs.readFile(path, (err, data) => {
 			if (err) {
-				res.write('404')
+				res.writeHeader(404)    //header
+				res.write('Not Found')  //body
 			} else {
-				res.write(data)
+				res.write(data) 
 			}
 			res.end()
 		})
