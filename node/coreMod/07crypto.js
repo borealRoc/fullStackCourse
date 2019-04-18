@@ -1,3 +1,4 @@
+// 签名
 const crypto = require('crypto');
 
 let md5Obj = crypto.createHash('md5');
