@@ -43,3 +43,6 @@
 	border: none;
 	outline: none;
 }
+.form-btn.reg-btn {
+	background-color: #8c8c8c;
+}
