@@ -7,7 +7,7 @@ let server = http.createServer((req, res) => {
 	let rs = fs.createReadStream(`www${req.url}`);
 	res.setHeader('content-encoding', 'gzip');
 	let gz = zlib.createGzip();
-	rs.pipe(gz).pipe(res);
+	rs.pipe(gz).pipe(res);//浏览器最后会自己解压
 
 	rs.on('error', err => {
 		res.writeHeader(404);
