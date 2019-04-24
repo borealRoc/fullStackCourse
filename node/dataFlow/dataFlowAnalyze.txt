@@ -1,0 +1,113 @@
+[ <Buffer 2d 2d 2d 2d 2d 2d 57 65 62 4b 69 74 46 6f 72 6d 42 6f 75 6e 64 61 72 79 44 67 55 64 57 4b 76 35 4d 51 75 6d 79 69 36 4d 0d 0a 43 6f 6e 74 65 6e 74 2d ... > ]
+
+------WebKitFormBoundaryDgUdWKv5MQumyi6M
+Content-Disposition: form-data; name="user"
+
+xusp
+------WebKitFormBoundaryDgUdWKv5MQumyi6M
+Content-Disposition: form-data; name="pass"
+
+123456
+------WebKitFormBoundaryDgUdWKv5MQumyi6M
+Content-Disposition: form-data; name="f1"; filename="uploadFile.txt"
+Content-Type: text/plain
+
+aaa
+bbb
+
+
+ccc
+------WebKitFormBoundaryDgUdWKv5MQumyi6M--
+
+--------------------------------------------------------------------------------
+
+分析
+step1: 把“------WebKitFormBoundaryDgUdWKv5MQumyi6M”替换成“<分隔符>”
+
+<分隔符>
+Content-Disposition: form-data; name="user"
+
+xusp
+<分隔符>
+Content-Disposition: form-data; name="pass"
+
+123456
+<分隔符>
+Content-Disposition: form-data; name="f1"; filename="uploadFile.txt"
+Content-Type: text/plain
+
+aaa
+bbb
+
+                       
+ccc
+<分隔符>--
+
+--------------------------------------------------------------------------------
+
+step2: 给每一行末尾加上“\r\n”【http协议规定换行是\r\n】
+
+<分隔符>\r\n
+Content-Disposition: form-data; name="user"\r\n
+\r\n
+xusp\r\n
+<分隔符>\r\n
+Content-Disposition: form-data; name="pass"\r\n
+\r\n
+123456\r\n
+<分隔符>\r\n
+Content-Disposition: form-data; name="f1"; filename="uploadFile.txt"\r\n
+Content-Type: text/plain\r\n
+\r\n
+文件内容\r\n
+分隔符--\r\n
+
+--------------------------------------------------------------------------------
+
+step3: 整理格式
+
+<分隔符>\r\n数据描述\r\n\r\n数据值\r\n
+<分隔符>\r\n数据描述\r\n\r\n数据值\r\n
+<分隔符>\r\n数据描述1\r\n数据描述2\r\n\r\n文件内容\r\n
+<分隔符>--\r\n
+
+--------------------------------------------------------------------------------
+
+处理数据
+step1: 用分隔符切开数据
+[
+	空,
+	\r\n数据描述\r\n\r\n数据值\r\n,
+	\r\n数据描述\r\n\r\n数据值\r\n,
+	\r\n数据描述1\r\n数据描述2\r\n\r\n文件内容\r\n,
+	--\r\n
+]
+
+step2: 舍弃头尾元素
+[
+	\r\n数据描述\r\n\r\n数据值\r\n,
+	\r\n数据描述\r\n\r\n数据值\r\n,
+	\r\n数据描述1\r\n数据描述2\r\n\r\n文件内容\r\n
+]
+
+step3: 去掉数据每一项头尾的\r\n
+[
+	数据描述\r\n\r\n数据值,
+	数据描述\r\n\r\n数据值,
+	数据描述1\r\n数据描述2\r\n\r\n文件内容
+]
+
+step4: 用第一次出现的‘\r\n’切分每一项
+[
+	[数据描述,数据值],
+	[数据描述,数据值],
+	[数据描述1\r\n数据描述2,文件内容]
+]
+
+step5: 判断数据描述有没有‘\r\n’
+有：文件数据 [数据描述1\r\n数据描述2,文件内容]
+没有：普通数据 [数据描述, 数据值]
+
+step6: 进一步处理文件数据的数据描述
+
+--------------------------------------------------------------------------------
