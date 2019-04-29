@@ -88,7 +88,7 @@
             if (data1.a + data1.b > 10) {
                 let data2 = await $.ajax({url: path2, dataType: 'json'});
             } else {
-                let data3 = yield $.ajax({url: path3, dataType: 'json'});
+                let data3 = await $.ajax({url: path3, dataType: 'json'});
             }
         })()
         
