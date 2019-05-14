@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>测试登录注册接口</title>
+    <link rel="stylesheet" type="text/css" href="form.css">
+    <script src="jquery.js"></script>
+</head>
+
+<body>
+    <div class="form-div">
+        <div class="form-item">
+            <label class="form-label">用户名：</label>
+            <input id="user" class="form-input" type="text"/>
+        </div>
+        <div class="form-item">
+            <label class="form-label">密码：</label>
+            <input id="pass" class="form-input" type="password"/>
+        </div>
+        <button id="regBtn" class="form-btn reg-btn">注册</button>
+        <button id="loginBtn" class="form-btn login-btn">登录</button>
+    </div>
+    <script type="text/javascript">
+    $(function() {
+        const _regBtn = $('#regBtn');
+        const _loginBtn = $('#loginBtn');
+
+        _regBtn.on('click', function(event) {
+            $.ajax({
+                url: '/reg',
+                dataType: 'json',
+                data: {
+                    user: $('#user').val(),
+                    pass: $('#pass').val()
+                },
+                success(res) {
+                    if (res.err) {
+                        alert('注册失败' + res.msg)
+                    } else {
+                        alert(res.msg)
+                    }
+                },
+                error(err) {
+                    alert(err)
+                }
+            });
+        })
+
+        _loginBtn.on('click', function(event) {
+            $.ajax({
+                url: '/login',
+                dataType: 'json',
+                data: {
+                    user: $('#user').val(),
+                    pass: $('#pass').val()
+                },
+                success(res) {
+                    if (res.err) {
+                        alert('登录失败' + res.msg)
+                    } else {
+                        alert(res.msg)
+                    }
+                },
+                error(err) {
+                    alert(err)
+                }
+            });
+        })
+    })
+    </script>
+</body>
+
+</html>
