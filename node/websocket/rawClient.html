@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>原生websockt与原生node服务器之间的通信</title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+	<script type="text/javascript">
+		let sock = new WebSocket('ws://localhost:8080/');
+
+		// 连上了
+		sock.onopen = () => {
+			alert('连接上了');
+		}
+		// 有数据
+		sock.onmessage = () => {
+			alert('有消息过来');
+		}
+		// 断开了
+		sock.onclose = () => {
+			alert('断了');
+		}
+	</script>
+</body>
+</html>

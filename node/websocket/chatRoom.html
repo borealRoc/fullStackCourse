@@ -35,6 +35,9 @@
 			text-align: right;
 			color: #1a2a3a;
 		}
+		#chatLists li .user {
+			font-size: 12px;
+		}
 		#chatSendArea {
 			float: left;
 			box-sizing: border-box;;
@@ -106,7 +109,7 @@
 			_chatSendBtn.onclick = () => {
 				socket.emit('msg', _chatSendArea.value);
 				let _chatList = document.createElement('li');
-				_chatList.innerHTML = _chatSendArea.value;
+				_chatList.innerHTML = '<p class="user">我:</p><p>'+_chatSendArea.value+'<p/>';
 				_chatList.className = 'me';
 				_chatSendArea.value = '';
 				_chatLists.append(_chatList);
@@ -115,7 +118,7 @@
 
 			socket.on('msg', chatMes => {
 				let _chatList = document.createElement('li');
-				_chatList.innerHTML = chatMes;
+				_chatList.innerHTML = '<p class="user">他:</p><p>'+ chatMes +'<p/>';
 				_chatList.className = 'else';
 				_chatLists.append(_chatList);
 			})
