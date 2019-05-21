@@ -67,7 +67,7 @@ let server = net.createServer(sock => {
             sock.write(`HTTP/1.1 101 Switching Protocols\r\nUpgrade: websocket\r\nConnection: Upgrade\r\nSec-WebSocket-Accept: ${key2}\r\n\r\n`);
             console.log('握手结束...');
 
-            // step1: 真正的数据
+            // step2: 真正的数据
             sock.on('data', data => {
             	console.log(data);
             })

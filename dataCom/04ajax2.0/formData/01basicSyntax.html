@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>formData基础语法</title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+	<script type="text/javascript">
+		let data = new FormData();
+
+		// 设置 会覆盖
+		data.set('user', 'xu');
+		// 追加 不会覆盖
+		data.append('user', 'liu');
+		// 获取相同name的所有数据
+		let users = data.getAll('user');
+		
+		console.log(users);
+	</script>
+</body>
+</html>
