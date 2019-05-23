@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>本地存储</title>
+	<style type="text/css">
+		#txt {
+			box-sizing: border-box;
+			width: 1000px;
+			height: 500px;
+			padding: 10px;
+			font-size: 16px;
+			text-indent: 2em;
+			line-height: 26px;
+			resize: none;
+			outline: none;
+		}
+	</style>
+</head>
+<body>
+	<textarea id="txt"></textarea>
+	<button id="btn">发送</button>
+	<script type="text/javascript">
+		window.onload = () => {
+			let _txt = document.getElementById('txt');
+			let _btn = document.getElementById('btn');
+
+			_txt.value = localStorage.tempTxt || '';
+
+			_txt.oninput = () => {
+				localStorage.tempTxt = _txt.value;
+			}
+			_btn.onclick = () => {
+				alert('发送完成');
+				delete localStorage.tempTxt;
+			}
+
+		}
+	</script>
+</body>
+</html>
