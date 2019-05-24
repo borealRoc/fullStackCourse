@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>formData基础语法</title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <form id="form">
+        用户：<input id="user" type="text" name="user" />
+        密码：<input id="pass" type="password" name="pass" />
+        头像：<input id="f1" type="file" name="file" multiple>
+        <button id="send">提交</button>
+    </form>
+    <script type="text/javascript">
+    window.onload = () => {
+        let _form = document.getElementById('form');
+        let _user = document.getElementById('user');
+        let _pass = document.getElementById('pass');
+        let _file = document.getElementById('f1');
+        let _send = document.getElementById('send');
+
+        _send.addEventListener('click', () => {
+            var formdata = new FormData(_form);
+            var xhr = new XMLHttpRequest();
+            xhr.open("post", "http://localhost:8080/api", true);
+            xhr.send(formdata);
+            xhr.onload = () => {
+                if (xhr.status === 200 && xhr.status < 300 || xhr.status === 304) {
+                    alert('成功');
+                } else {
+                	alert('失败');
+                }
+            }
+        })
+    }
+    </script>
+</body>
+
+</html>

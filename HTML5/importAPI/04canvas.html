@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>canvas基本用法</title>
+	<style type="text/css">
+		* {
+			padding: 0;
+			margin: 0;
+		}
+		#canvas {
+			display: block;
+			margin: 20px auto;
+			border: solid 1px #999;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas" width="800" height="600"></canvas>
+	<script type="text/javascript">
+		window.onload = () => {
+			let canvas = document.getElementById('canvas');
+			let ctx = canvas.getContext('2d');
+
+			ctx.beginPath();
+			ctx.moveTo(80, 10);
+			ctx.lineTo(120, 50);
+			ctx.lineTo(30, 40);
+			ctx.closePath();
+			ctx.lineWidth = 5;
+			ctx.strokeStyle = "#34495e";
+			ctx.stroke();
+
+			ctx.beginPath();
+			ctx.moveTo(170, 10);
+			ctx.lineTo(210, 50);
+			ctx.lineTo(120, 40);
+			ctx.closePath();
+			ctx.fillStyle = "#27ae60";
+			ctx.fill();
+		}
+	</script>
+</body>
+</html>

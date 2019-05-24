@@ -1,10 +1,16 @@
-const express = require('express');  	// 主体
-const body = require('body-parser');    // 接收普通post数据
-const multer = require('multer');       // 接收文件post数据
 
-let server = express();
-server.listen(8080);
+// parse application/x-www-form-urlencoded
+server.use(body.urlencoded({ extended: false }))
 
-server.get('/', (req, res) => {
+let upload = multer({ dest: './upload/' })
+server.use(upload.any());
+
+// 处理请求
+server.post('/api', (req, res) => {
+	console.log(req.body);
+	console.log(req.files);
 	res.send('hello world');
 })
+
+// 静态资源
+server.use(express.static('./www/'));

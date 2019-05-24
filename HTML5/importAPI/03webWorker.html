@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>web多进程</title>
+</head>
+<body>
+	<script type="text/javascript">
+		let oW = new Worker('03workerProcess.js');
+		oW.postMessage({n1: 10, n2: 20});
+		oW.onmessage = function (ev) {
+			alert(ev.data);
+		}
+	</script>
+</body>
+</html>
