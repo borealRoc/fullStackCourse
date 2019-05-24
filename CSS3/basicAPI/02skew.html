@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>skew的计算方式</title>
+    <style type="text/css">
+    .box {
+        position: absolute;
+        top: 200px;
+        left: 200px;
+        width: 200px;
+        height: 400px;
+        background: #16a085;
+    }
+
+    .skew-box {
+        position: absolute;
+        top: 200px;
+        width: 200px;
+        height: 400px;
+        background: #16a085;
+    }
+
+    .skew-box p {
+        margin: 0;
+        padding: 0;
+        font-size: 18px;
+        line-height: 400px;
+        text-align: center;
+        color: #fff;
+    }
+
+    .skew-box.x {
+        left: 600px;
+        transform: skew(20deg, 0);
+    }
+
+    .skew-box.x:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: -200px;
+        width: 1px;
+        height: 400px;
+        border-left: dashed 1px #111;
+        transform: rotate(20deg);
+    }
+
+    .skew-box.x:after {
+        content: '';
+        position: absolute;
+        left: -100px;
+        top: -1px;
+        width: 400px;
+        height: 1px;
+        border-top: dashed 1px #111;
+    }
+
+    .skew-box.x .skew-num {
+        position: absolute;
+        left: -33px;
+        width: 100px;
+        height: 87px;
+        padding-top: 100px;
+        font-size: 10px;
+        vertical-align: bottom;
+        background-color: #e91e1e4f;
+        transform: skew(-20deg, 0);
+    }
+
+    .skew-box.x .beauty {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 187px;
+        background: #16a085;
+    }
+
+    .skew-box.Y {
+        left: 1000px;
+        transform: skew(0, 20deg);
+    }
+
+    .skew-box.Y p {
+        transform: skew(0, -20deg);
+    }
+
+    .skew-box.Y:before {
+        content: '';
+        position: absolute;
+        left: -1px;
+        top: -200px;
+        width: 1px;
+        height: 400px;
+        border-left: dashed 1px #111;
+    }
+
+    .skew-box.Y:after {
+        content: '';
+        position: absolute;
+        left: -50px;
+        top: -54px;
+        width: 400px;
+        height: 1px;
+        border-top: dashed 1px #111;
+        transform: rotate(-20deg);
+    }
+
+    .skew-box.Y .skew-num {
+        position: absolute;
+        top: -35px;
+        width: 150px;
+        height: 71px;
+        padding-left: 50px;
+        font-size: 10px;
+        transform: skew(0, -20deg);
+        background-color: #e91e1e4f;
+        
+    }
+
+    .skew-box.Y .beauty {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100px;
+        background: #16a085;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+    <div class="skew-box x">
+        <span class="skew-num">20deg</span>
+        <p>skew(20deg, 0)</p>
+        <span class="beauty"></span>
+    </div>
+    <div class="skew-box Y">
+        <span class="skew-num">20deg</span>
+        <p>skew(0, 20deg)</p>
+        <span class="beauty"></span>
+    </div>
+</body>
+
+</html>
