@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>景深、透视</title>
+    <style type="text/css">
+    .box {
+        position: absolute;
+        left: 50px;
+        top: 50px;
+        width: 200px;
+        height: 200px;
+        color: #fff;
+        background: #16a085;
+        transform: perspective(0) rotate3d(0, 0, 0) translate3d(0, 0, 0);
+    }
+
+    .box.rotateX {
+        left: 350px;
+        top: 50px;
+        transform: perspective(300px) rotateX(30deg);
+    }
+
+    .box.rotateY {
+        left: 650px;
+        top: 50px;
+        transform: perspective(300px) rotateY(30deg);
+    }
+
+    .box.rotateZ {
+        left: 950px;
+        top: 50px;
+        transform: perspective(300px) rotateZ(30deg);
+    }
+
+/*    .box.translateX {
+        left: 350px;
+        top: 450px;
+        transform: perspective(300px) translateX(1.5);
+    }
+
+    .box.translateY {
+        left: 650px;
+        top: 450px;
+        transform: perspective(300px) translateY(1.5);
+    }
+
+    .box.translateZ {
+        left: 850px;
+        top: 450px;
+        transform: perspective(300px) translateZ(1.5);
+    }*/
+    </style>
+</head>
+
+<body>
+    <div class="box">rotate3d(0, 0, 0) translate3d(0, 0, 0)</div>
+    <div class="box rotateX">rotateX(30deg)</div>
+    <div class="box rotateY">rotateY(30deg)</div>
+    <div class="box rotateZ">rotateZ(90deg)</div>
+<!--     <div class="box translateX">translateX(1.5)</div>
+    <div class="box translateY">translateY(1.5)</div>
+    <div class="box translateZ">translateZ(1.5)</div> -->
+</body>
+
+</html>
