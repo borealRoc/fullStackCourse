@@ -14,7 +14,7 @@
         height: 200px;
         color: #fff;
         background: #16a085;
-        transform: perspective(0) rotate3d(0, 0, 0) translate3d(0, 0, 0);
+        transform: perspective(0) rotate3d(0, 0, 0);
     }
 
     .box.rotateX {
@@ -34,35 +34,14 @@
         top: 50px;
         transform: perspective(300px) rotateZ(30deg);
     }
-
-/*    .box.translateX {
-        left: 350px;
-        top: 450px;
-        transform: perspective(300px) translateX(1.5);
-    }
-
-    .box.translateY {
-        left: 650px;
-        top: 450px;
-        transform: perspective(300px) translateY(1.5);
-    }
-
-    .box.translateZ {
-        left: 850px;
-        top: 450px;
-        transform: perspective(300px) translateZ(1.5);
-    }*/
     </style>
 </head>
 
 <body>
-    <div class="box">rotate3d(0, 0, 0) translate3d(0, 0, 0)</div>
+    <div class="box">rotate3d(0, 0, 0)</div>
     <div class="box rotateX">rotateX(30deg)</div>
     <div class="box rotateY">rotateY(30deg)</div>
-    <div class="box rotateZ">rotateZ(90deg)</div>
-<!--     <div class="box translateX">translateX(1.5)</div>
-    <div class="box translateY">translateY(1.5)</div>
-    <div class="box translateZ">translateZ(1.5)</div> -->
+    <div class="box rotateZ">rotateZ(30deg)</div>
 </body>
 
 </html>
