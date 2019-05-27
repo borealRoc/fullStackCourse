@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>transition属性的写法</title>
+    <style type="text/css">
+    .box {
+        width: 200px;
+        height: 200px;
+        margin: 20px auto;
+        background: #16a085;
+        /*ease是ease-in-out的缩写，先快后慢，它是最符合现实规律的变化*/
+        transition: all 2s ease;
+        /*多属性渐变写法，width和height有渐变效果，其它都是突变*/
+        /*transition: width 2s ease, height 4s ease;*/
+    }
+    .box:active {
+        width: 400px;
+        height: 400px;
+        margin: 100px auto;
+        background: #2c3e50;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+</body>
+
+</html>
