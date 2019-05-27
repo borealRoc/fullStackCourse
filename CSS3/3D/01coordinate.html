@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>transform-3d坐标解析</title>
+    <style type="text/css">
+    .wrap {
+        width: 400px;
+        height: 400px;
+        margin: 400px auto;
+        background: #e74c3c;
+        transform: perspective(700px) rotateX(30deg) rotateY(30deg) rotateZ(30deg);
+        transform-style: preserve-3d;
+        transition: all 2s ease;
+    }
+    .wrap:active {
+        transform: perspective(700px) rotateX(60deg) rotateY(60deg) rotateZ(60deg);
+    }
+    .father {
+        width: 80%;
+        height: 80%;
+        background: #27ae60;
+        transform: translateZ(0);
+        transform-style: preserve-3d;
+        transition: all 2s ease;
+    }
+    .father:active {
+        transform: translateZ(200px);
+    }
+    .son {
+        width: 80%;
+        height: 80%;
+        background: #2980b9;
+        transform: translateZ(0);
+        transition: all 2s ease;
+    }
+    .son:active {
+        transform: translateZ(200px);
+    }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="father">
+            <div class="son"></div>
+        </div>
+    </div>
+</body>
+
+</html>
