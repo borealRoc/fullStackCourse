@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>animation属性解析</title>
+    <style type="text/css">
+    @keyframes boxAni {
+        
+        /*要保持每次只变化一个属性，必须在每个动画阶段控制每次只变化一个属性，其它属性不变*/
+
+        0% {
+            width: 200px;
+            height: 200px;
+            font-size: 16px;
+            background: #16a085;
+        }
+
+        25% {
+            width: 400px;
+            height: 200px;
+            font-size: 16px;
+            background: #16a085;
+        }
+
+        50% {
+            width: 400px;
+            height: 400px;
+            font-size: 16px;
+            background: #16a085;
+        }
+
+        75% {
+            width: 400px;
+            height: 400px;
+            font-size: 30px;
+            background: #16a085;
+        }
+
+        100% {
+            width: 400px;
+            height: 400px;
+            font-size: 30px;
+            background: #c0932b;
+        }
+    }
+
+    .box {
+        width: 200px;
+        height: 200px;
+        margin: 20px auto;
+        font-size: 16px;
+        color: #fff;
+        background: #16a085;
+
+        /*必写属性*/
+        animation-name: boxAni;
+        animation-duration: 2s;
+        animation-timing-function: ease;    
+        /*拓展属性*/
+        animation-fill-mode: forwards;  /*停在动画的最后一帧*/
+        animation-delay: 1s;    /*延迟*/
+        animation-iteration-count: infinite;   /*动画播放次数*/
+        animation-direction: alternate;     /*动画循环方式，跟animation-iteration-count配合使用*/
+    }
+
+    /*跟JS一起用, 给动画加类名*/
+    .box.active {
+        /*必写属性*/
+        animation-name: boxAni;
+        animation-duration: 2s;
+        animation-timing-function: ease;    
+        /*拓展属性*/
+        animation-fill-mode: forwards;  /*停在动画的最后一帧*/
+        animation-delay: 1s;    /*延迟*/
+        animation-iteration-count: infinite;   /*动画播放次数*/
+        animation-direction: alternate;     /*动画循环方式，跟animation-iteration-count配合使用*/
+    }
+
+    .box:active {
+        animation-play-state: paused;   /*停止动画*/
+    }
+
+
+    </style>
+</head>
+
+<body>
+    <div class="box">font-size</div>
+</body>
+
+</html>
