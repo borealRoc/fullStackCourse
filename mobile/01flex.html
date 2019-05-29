@@ -19,6 +19,7 @@
         height: 40px;
         font-size: 16px;
         line-height: 40px;
+        text-align: center;
         color: #fff;
     }
 
@@ -34,6 +35,10 @@
         background-color: #e74c3c;
     }
 
+    li:nth-child(4) {
+        background-color: #f1c40f;
+    }
+
     .flex {
         display: flex;
     }
@@ -46,9 +51,10 @@
 
 <body>
     <ul class="flex">
-        <li class="flex-1" style="max-width: 300px;">max-width: 200px有效</li>
-        <li class="flex-1" style="min-width: 400px;">min-width: 400px有效</li>
-        <li class="flex-1" style="width: 500px !important;">width: 400px !important无效</li>
+        <li class="flex-1" style="max-width: 200px;">max-width有效</li>
+        <li class="flex-1" style="min-width: 700px;">min-width有效</li>
+        <li class="flex-1" style="width: 500px !important;">width无效</li>
+        <li class="flex-1" style="max-width: 500px; min-width: 500px;">同时设置max-width和min-width为同一个值，可以实现width效果</li>
     </ul>
 </body>
 
