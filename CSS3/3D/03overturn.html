@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>扑克牌翻转</title>
+    <style type="text/css">
+    .wrap {
+    	position: relative;
+    	width: 300px;
+    	height: 449px;
+    	margin: 200px auto 0;
+    	border-radius: 20px;
+    	transform: perspective(700px) rotateY(0);
+    	transform-style: preserve-3d;
+    	transition: all 1s ease;
+    }
+    .wrap > div {
+    	position: absolute;
+    	left: 0;
+    	top: 0;
+    	box-sizing: border-box;
+    	width: 100%;
+    	height: 100%;
+    	font-size: 120px;
+    	line-height: 449px;
+    	text-align: center;
+    	border: solid 1px #999;
+    	border-radius: 20px;
+    }
+	.wrap > div > .top {
+		position: absolute;
+		left: 10px;
+		top: 0;
+		font-size: 40px;
+		line-height: 60px;
+	}
+	.wrap > div > .bottom {
+		position: absolute;
+		right: 10px;
+		bottom: 0;
+		font-size: 40px;
+		line-height: 60px;
+	}
+	.wrap .back {
+		background: url(poke.jpg) no-repeat 0 0;
+		background-size: cover;
+		transform: translateZ(1px);
+	}
+	.wrap .front {
+		transform: translateZ(-1px) scaleX(-1);
+		background: #fff;
+	}
+	.wrap:active {
+		transform: perspective(700px) rotateY(180deg);
+	}
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="front">
+        	<span class="top">A</span>
+        	♥
+        	<span class="bottom">A</span>
+        </div>
+        <div class="back"></div>
+    </div>
+</body>
+
+</html>
