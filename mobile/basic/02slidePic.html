@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+    <title>单点触摸综合运用实例</title>
+    <link rel="stylesheet" href="css/slide.css"/>
+    <link rel="stylesheet" href="css/loading.css"/>
+    <script src="../lib/font.js"></script>
+</head>
+
+<body>
+    <div class="loading">
+        <div id="fountainTextG">
+            <div id="fountainTextG_1" class="fountainTextG">L</div>
+            <div id="fountainTextG_2" class="fountainTextG">o</div>
+            <div id="fountainTextG_3" class="fountainTextG">a</div>
+            <div id="fountainTextG_4" class="fountainTextG">d</div>
+            <div id="fountainTextG_5" class="fountainTextG">i</div>
+            <div id="fountainTextG_6" class="fountainTextG">n</div>
+            <div id="fountainTextG_7" class="fountainTextG">g</div>
+        </div>
+    </div>
+    <div class="page">
+        <section class="banner">
+            <ul class="banner-pic-lists">
+                <li class="banner-pic-list">
+                    <img class="banner-pic" src="img/1.jpg" alt="" />
+                </li>
+                <li class="banner-pic-list">
+                    <img class="banner-pic" src="img/2.jpg" alt="" />
+                </li>
+                <li class="banner-pic-list">
+                    <img class="banner-pic" src="img/3.jpg" alt="" />
+                </li>
+                <li class="banner-pic-list">
+                    <img class="banner-pic" src="img/4.jpg" alt="" />
+                </li>
+            </ul>
+            <ol class="banner-num-lists">
+                <!--             <li class="banner-num-list active"></li>
+                <li class="banner-num-list"></li>
+                <li class="banner-num-list"></li>
+                <li class="banner-num-list"></li> -->
+            </ol>
+        </section>
+    </div>
+    <script type="text/javascript">
+    window.onload = () => {
+        let _loading = document.getElementsByClassName('loading')[0],
+            _page = document.getElementsByClassName('page')[0]
+            _banner = _page.querySelector('.banner'),
+            _bannerPicLists = _banner.querySelector('.banner-pic-lists'),
+            _bannerPicList = _bannerPicLists.querySelectorAll('.banner-pic-list'),
+            _bannerNumLists = _banner.querySelector('.banner-num-lists');
+
+        
+
+    }
+    </script>
+</body>
+
+</html>

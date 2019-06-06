@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+    <title>触摸与方向锁定</title>
+    <style type="text/css">
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    .box {
+        /*position: absolute;*/
+        width: 1rem;
+        height: 1rem;
+        text-align: center;
+        font-size: 0.4rem;
+        font-style: italic;
+        line-height: 1rem;
+        color: #fff;
+        text-shadow: 0 0 8px #f80, 0 0 12px #f80;
+        background: #9c84841f;
+        transform: translate(0, 0);
+    }
+    </style>
+    <script src="../../lib/font.js"></script>
+</head>
+
+<body>
+    <div id="box" class="box">M</div>
+    <h4>跟按下的位置相比<br />如果横向移动超过5px，锁定为水平<br />如果纵向移动超过5px，锁定为垂直</h4>
+    <p>1.方向确定之前 —— 压根不动</p>
+    <p>2.方向已经确定了 —— 再动</p>
+    <script type="text/javascript"> 
+    window.onload = () => {
+        let _box = document.getElementById('box');
+        const boxWid = _box.clientWidth;
+        const boxHei = _box.clientWidth;
+        const screenWid = screen.width;
+        const screenHei = screen.height;
+        const maxDisX = screenWid - boxWid;
+        const maxDisY = screenHei - boxHei;
+
+        let X = 0;
+        let Y = 0;
+
+        _box.addEventListener("touchstart", function(e) {
+
+            let dir = '';
+
+            // 获取触摸相对盒子开始点的坐标
+            let startX = e.targetTouches[0].clientX - X;
+            let startY = e.targetTouches[0].clientY - Y;
+
+            // 获取触摸相对屏幕开始点的坐标
+            let initialX = e.targetTouches[0].clientX;
+            let initialY = e.targetTouches[0].clientY;
+
+
+            // 在拖动过程中实时定位盒子的位置
+            function fnMove(e) {
+
+            	// 方向锁定
+                if (dir === '') {
+                    if (Math.abs(e.targetTouches[0].clientX - initialX) >= 5) {
+                        dir = 'x';
+                    } else if (Math.abs(e.targetTouches[0].clientY - initialY) >= 5) {
+                        dir = 'y';
+                    }
+                } else if (dir === 'x') {
+                    X = e.targetTouches[0].clientX - startX;
+                } else if (dir === 'y') {
+                    Y = e.targetTouches[0].clientY - startY;
+                }
+
+
+                // 限制盒子拖动不要超过浏览器屏幕
+                if (X < 0) {
+                    X = 0
+                } else if (X > maxDisX) {
+                    X = maxDisX
+                }
+
+                if (Y < 0) {
+                    Y = 0
+                } else if (Y > maxDisY) {
+                    Y = maxDisY
+                }
+
+                _box.style.transform = `translate(${X}px, ${Y}px)`;
+            }
+
+
+            // 在停止拖动释放盒子时移除定位事件
+            function fnEnd(e) {
+                _box.removeEventListener('touchmove', fnMove, false);
+                _box.removeEventListener('touchend', fnEnd, false);
+            }
+            _box.addEventListener('touchmove', fnMove, false);
+            _box.addEventListener('touchend', fnEnd, false);
+        }, false);
+    }
+    </script>
+</body>
+
+</html>
