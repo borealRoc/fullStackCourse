@@ -13,15 +13,12 @@ li {
 }
 
 .loading {
-    position: absolute;
-    width: 100%;
-    height: 0.5rem;
+    height: 50px;
 }
 
 .page {
-    position: absolute;
-    width: 100%;
-    top: 0.5rem;
+    background-color: #fff;
+    transform: translateY(-50px);
 }
 
 .banner {
@@ -30,7 +27,8 @@ li {
 }
 
 .banner .banner-pic-lists {
-    width: 375rem;
+    font-size: 0;
+    white-space: nowrap;
     transform: translateX(0);
 }
 
@@ -41,7 +39,7 @@ li {
 }
 
 .banner .banner-pic-list {
-    float: left;
+    display: inline-block;
     width: 3.75rem;
     height: 1.2rem;
 }

@@ -2,7 +2,11 @@
     width: 1rem;
     margin: auto;
 }
-
+#release {
+    display: none;
+    width: 1rem;
+    margin: auto;
+}
 .fountainTextG {
     color: rgb(0, 0, 0);
     font-family: Arial;
