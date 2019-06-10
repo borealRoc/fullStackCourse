@@ -10,6 +10,10 @@
     * {
         padding: 0;
         margin: 0;
+        -webkit-touch-callout: none;
+        -moz-touch-callout: none;
+        -ms-touch-callout: none;
+        touch-callout: none;
     }
 
     .box {
@@ -43,11 +47,11 @@
 
         _box.addEventListener("touchstart", function(e) {
 
-            // 获取触摸开始点的坐标
+            // 1、获取触摸“相对于盒子”开始点的坐标
             let x = e.targetTouches[0].clientX - _box.offsetLeft;
             let y = e.targetTouches[0].clientY - _box.offsetTop;
 
-            // 在拖动过程中实时定位盒子的位置
+            // 在拖动过程中实时定位盒子“相对于屏幕”的位置
             function fnMove(e) {
                 let moveDisX = e.targetTouches[0].clientX - x;
                 let moveDisY = e.targetTouches[0].clientY - y;

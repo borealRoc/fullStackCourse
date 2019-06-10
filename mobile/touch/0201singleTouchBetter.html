@@ -13,7 +13,6 @@
     }
 
     .box {
-        /*position: absolute;*/
         width: 1rem;
         height: 1rem;
         text-align: center;
@@ -25,13 +24,17 @@
         background: #9c84841f;
         transform: translate(0, 0);
     }
+
+    h1 {
+        text-align: justify;
+    }
     </style>
     <script src="../../lib/font.js"></script>
 </head>
 
 <body>
     <div id="box" class="box">M</div>
-    <h1>盒子，动来动去的，也不会挤到我。</h1>
+    <h1>任凭盒子如果拖动，也不会导致我的重排。这就是利用CSS3 transform属性的优点</h1>
     <script type="text/javascript">
     window.onload = () => {
         let _box = document.getElementById('box');
@@ -42,16 +45,16 @@
         const maxDisX = screenWid - boxWid;
         const maxDisY = screenHei - boxHei;
 
-        let X = 0;
-        let Y = 0;
+        let X = 20;
+        let Y = 20;
 
         _box.addEventListener("touchstart", function(e) {
 
-            // 获取触摸开始点的坐标
+            // 获取触摸“相对于盒子”开始点的坐标
             let startX = e.targetTouches[0].clientX - X;
             let startY = e.targetTouches[0].clientY - Y;
 
-            // 在拖动过程中实时定位盒子的位置
+            // 在拖动过程中实时定位盒子“相对于屏幕”的位置
             function fnMove(e) {
                 X = e.targetTouches[0].clientX - startX;
                 Y = e.targetTouches[0].clientY - startY;

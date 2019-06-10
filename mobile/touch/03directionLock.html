@@ -13,7 +13,6 @@
     }
 
     .box {
-        /*position: absolute;*/
         width: 1rem;
         height: 1rem;
         text-align: center;
@@ -51,16 +50,13 @@
 
             let dir = '';
 
-            // 获取触摸相对盒子开始点的坐标
             let startX = e.targetTouches[0].clientX - X;
             let startY = e.targetTouches[0].clientY - Y;
 
-            // 获取触摸相对屏幕开始点的坐标
             let initialX = e.targetTouches[0].clientX;
             let initialY = e.targetTouches[0].clientY;
 
 
-            // 在拖动过程中实时定位盒子的位置
             function fnMove(e) {
 
             	// 方向锁定
