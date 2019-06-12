@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>多点触摸旋转案例</title>
+    <style type="text/css">
+    * {
+        padding: 0;
+        margin: 0;
+        ''
+    }
+
+    html,
+    body {
+        height: 100%;
+    }
+
+    .box {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 2rem;
+        height: 2rem;
+        margin-left: -1rem;
+        margin-top: -1rem;
+        background-color: #ea6542;
+        transform: rotate(0);
+    }
+    </style>
+    <script type="text/javascript">
+    (function(designWidth, maxWidth) {
+        var doc = document,
+            win = window;
+        var docEl = doc.documentElement;
+        var tid;
+        var rootItem, rootStyle;
+
+        function refreshRem() {
+            var width = docEl.getBoundingClientRect().width;
+            if (!maxWidth) {
+                maxWidth = 540;
+            };
+            if (width > maxWidth) {
+                width = maxWidth;
+            }
+            //与淘宝做法不同，直接采用简单的rem换算方法1rem=100px
+            var rem = width * 100 / designWidth;
+            //兼容UC开始
+            rootStyle = "html{font-size:" + rem + 'px !important}';
+            rootItem = document.getElementById('rootsize') || document.createElement("style");
+            if (!document.getElementById('rootsize')) {
+                document.getElementsByTagName("head")[0].appendChild(rootItem);
+                rootItem.id = 'rootsize';
+            }
+            if (rootItem.styleSheet) {
+                rootItem.styleSheet.disabled || (rootItem.styleSheet.cssText = rootStyle)
+            } else {
+                try {
+                    rootItem.innerHTML = rootStyle
+                } catch (f) {
+                    rootItem.innerText = rootStyle
+                }
+            }
+            //兼容UC结束
+            docEl.style.fontSize = rem + "px";
+        };
+        refreshRem();
+
+        win.addEventListener("resize", function() {
+            clearTimeout(tid); //防止执行两次
+            tid = setTimeout(refreshRem, 300);
+        }, false);
+
+        win.addEventListener("pageshow", function(e) {
+            if (e.persisted) { // 浏览器后退的时候重新计算
+                clearTimeout(tid);
+                tid = setTimeout(refreshRem, 300);
+            }
+        }, false);
+
+        if (doc.readyState === "complete") {
+            doc.body.style.fontSize = "16px";
+        } else {
+            doc.addEventListener("DOMContentLoaded", function(e) {
+                doc.body.style.fontSize = "16px";
+            }, false);
+        }
+    })(375, 750);
+    </script>
+</head>
+
+<body>
+    <div id="box" class="box"></div>
+    <script type="text/javascript">
+        let getAng = (touch1, touch2) => {
+            let x = touch1.clientX - touch2.clientX;
+            let y = touch1.clientY - touch2.clientY;
+            return Math.atan2(y,x) * 180/Math.PI;
+        }
+
+        window.onload = () => {
+            let _box = document.getElementById('box');
+            let ang1, ang2, startAng, rotateAng = 0;
+
+            document.addEventListener('touchstart', (e) => {
+                if (e.targetTouches.length >= 2) {
+                    ang1 = getAng(e.targetTouches[0], e.targetTouches[1]);
+                    startAng += rotateAng;
+                }
+            }, false)
+            document.addEventListener('touchmove', (e) => {
+                if (e.targetTouches.length >= 2) {
+                    ang2 = getAng(e.targetTouches[0], e.targetTouches[1]);
+                    rotateAng = startAng + (ang2 - ang1);
+                    _box.style.transform = `rotate(${rotateAng})`;
+                }
+            }, false)
+
+        }
+    </script>
+</body>
+
+</html>
