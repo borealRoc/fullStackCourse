@@ -78,7 +78,7 @@
         
         // 2、轮播图滑动效果
         let x = 0,
-            y = -50;
+            y = 0;
         _banner.addEventListener('touchstart', (e) => {
             // step0: 清除_banner元素和_page元素的动画
             _page.style.transition = `none`;
@@ -121,7 +121,7 @@
                         _release.style.display = 'block';
                     }
                 } else {
-                    y = -50;
+                    y = 0;
                     _page.style.transform = `translateY(${y}px)`;
                 }
                 
@@ -132,13 +132,6 @@
                 let N = Math.abs(n);
                 x = n * bannerPicListWid;
 
-                // let min = -bannerPicListWid * (_bannerNumList.length -1) ;
-                // if (x < min) {
-                //     x = 0
-                // } else if (x>0) {
-                //     x = min
-                // }
-                
                 _bannerPicLists.style.transition = `all ease 0.3s`;
                 _bannerPicLists.style.transform = `translateX(${x}px)`;
                 Array.from(_bannerNumList).forEach((li, index) => {
@@ -146,7 +139,7 @@
                 })
 
                 // step6.2 处理纵向滑动的情况
-                y = -50;
+                y = 0;
                 _page.style.transition = `all ease 0.3s`;
                 _page.style.transform = `translateY(${y}px)`;
                 _fountainTextG.style.display = 'block';
