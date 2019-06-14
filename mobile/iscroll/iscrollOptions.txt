@@ -1,0 +1,25 @@
+HWCompositing: true
+bindToWrapper: false
+bounce: true
+bounceEasing: {style: "cubic-bezier(0.1, 0.57, 0.1, 1)", fn: ƒ}
+bounceTime: 600
+directionLockThreshold: 5
+disableMouse: true
+disablePointer: false
+disableTouch: true
+eventPassthrough: undefined
+freeScroll: undefined
+invertWheelDirection: 1
+momentum: true
+mouseWheelSpeed: 20
+preventDefault: true
+preventDefaultException: {tagName: /^(INPUT|TEXTAREA|BUTTON|SELECT)$/}
+resizePolling: 60
+resizeScrollbars: true
+scrollX: undefined
+scrollY: true
+snapThreshold: 0.334
+startX: 0
+startY: 0
+useTransform: true
+useTransition: true
