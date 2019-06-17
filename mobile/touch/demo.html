@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+	<title>文字横向滚动DEMO</title>
+	<style type="text/css">
+		* {
+			padding: 0;
+			margin: 0;
+		}
+		.box {
+			box-sizing: border-box;
+			line-height: 40px;
+			background-color: #e9eeb9;
+			white-space: nowrap;
+		}
+		.txt {
+			display: inline-block;
+			text-indent: 20px;
+		}
+		.txt.move {
+			animation: txtMove 10s linear;
+			animation-iteration-count: infinite;
+		}
+		@keyframes txtMove {
+			from {
+				transform: translateX(0);
+			}
+			to {
+				transform: translateX(-100%);
+			}
+		}
+	</style>
+	<script src="../../lib/jquery.js"></script>
+</head>
+<body>
+	<div class="box">
+		<p class="txt">尊敬的客户，我行未委托任何中介办理贷款，业务办理过程中无须支付利息以外费用。如有疑问，请咨询我行客服热线95313。</p>
+	</div>
+	<script type="text/javascript">
+		$(function () {
+			var box = $('.box');
+			var txt = $(".txt");
+			var boxWid = box.width();
+			var txtWid = txt.width();
+			if (txtWid > boxWid) {
+				txt.addClass('move');
+			}
+		})
+	</script>
+</body>
+</html>
