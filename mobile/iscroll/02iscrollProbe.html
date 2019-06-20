@@ -107,7 +107,7 @@
 // iscroll事件
 // beforeScrollStart   手指按下去
 // scrollCancel        手指按下没动，就抬起来了
-// scrollEnd           手指抬起来
+// scrollEnd           手指抬起来并且滚完
 // scrollStart         第一次移动
 // scroll              滚动中
             if (scroll.y > 80) {
@@ -121,6 +121,9 @@
             } else {
                 _loadmore.innerHTML = '加载更多';
             }
+        })
+        scroll.on('scrollEnd', () => {
+            console.log('我执行了');
         })
     }
     </script>
