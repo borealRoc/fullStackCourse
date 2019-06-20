@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+    <title>多点触摸缩放案例</title>
+    <style type="text/css">
+    * {
+        padding: 0;
+        margin: 0;
+        ''
+    }
+    ul {
+        list-style: none;
+    }
+    .blue, 
+    .red li {
+        width: 1rem;
+        height: 1rem;
+        
+        text-align: center;
+        font-size: 0.5rem;
+        font-weight: bold;
+        line-height: 1rem;
+        color: #fff;
+    }
+    .blue {
+        margin: 0.18rem auto;
+        background-color: #3498DB;
+    }
+    .red {
+        overflow: hidden;
+    }
+    .red li {
+        float: left;
+        margin: 0.18rem 0.18rem 0.18rem 0;
+        background-color: #E63B34;
+    }
+    .red li:nth-child(3n+1) {
+        margin-left: 0.18rem;
+    }
+    h1 {
+        margin: 0.5rem 0;
+        font-size: 0.5rem;
+        line-height: 1.2;
+        text-align: center;
+        font-style: italic;
+        font-family: cursive;
+        color: #111;
+    }
+    </style>
+    <script type="text/javascript">
+    (function(designWidth, maxWidth) {
+        var doc = document,
+            win = window;
+        var docEl = doc.documentElement;
+        var tid;
+        var rootItem, rootStyle;
+
+        function refreshRem() {
+            var width = docEl.getBoundingClientRect().width;
+            if (!maxWidth) {
+                maxWidth = 540;
+            };
+            if (width > maxWidth) {
+                width = maxWidth;
+            }
+            //与淘宝做法不同，直接采用简单的rem换算方法1rem=100px
+            var rem = width * 100 / designWidth;
+            //兼容UC开始
+            rootStyle = "html{font-size:" + rem + 'px !important}';
+            rootItem = document.getElementById('rootsize') || document.createElement("style");
+            if (!document.getElementById('rootsize')) {
+                document.getElementsByTagName("head")[0].appendChild(rootItem);
+                rootItem.id = 'rootsize';
+            }
+            if (rootItem.styleSheet) {
+                rootItem.styleSheet.disabled || (rootItem.styleSheet.cssText = rootStyle)
+            } else {
+                try {
+                    rootItem.innerHTML = rootStyle
+                } catch (f) {
+                    rootItem.innerText = rootStyle
+                }
+            }
+            //兼容UC结束
+            docEl.style.fontSize = rem + "px";
+        };
+        refreshRem();
+
+        win.addEventListener("resize", function() {
+            clearTimeout(tid); //防止执行两次
+            tid = setTimeout(refreshRem, 300);
+        }, false);
+
+        win.addEventListener("pageshow", function(e) {
+            if (e.persisted) { // 浏览器后退的时候重新计算
+                clearTimeout(tid);
+                tid = setTimeout(refreshRem, 300);
+            }
+        }, false);
+
+        if (doc.readyState === "complete") {
+            doc.body.style.fontSize = "16px";
+        } else {
+            doc.addEventListener("DOMContentLoaded", function(e) {
+                doc.body.style.fontSize = "16px";
+            }, false);
+        }
+    })(375, 750);
+    </script>
+</head>
+
+<body>
+    <h1>双色球号码</h1>
+    <div id="blue" class="blue">9</div>
+    <ul id="red" class="red">
+        <li id="first">3</li>
+        <li id="second">15</li>
+        <li id="third">17</li>
+        <li id="fourth">22</li>
+        <li id="fifth">28</li>
+        <li id="sixth">31</li>
+    </ul>
+</body>
+
+</html>
