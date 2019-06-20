@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+    <title>利用hammer实现短信删除效果</title>
+    <link rel="stylesheet" href="mesList.css">
+    <script src="font.js"></script>
+    <script src="jquery.js"></script>
+    <script src="hammer.js"></script>
+</head>
+
+<body>
+    <div class="page">
+        <ul id="mesLists" class="mes-lists">
+        </ul>
+    </div>
+    <script type="text/javascript">
+    $(function() {
+        let $mesLists = $("#mesLists");
+        let mesArray = [
+            { user: '中国电信', ctt: `上证报中国证券网讯 据北京日报6月20日消息，北京即将成为国内首批千兆之城。记者昨天从运营商方面了解到，北京今年开始大规模普及千兆宽带，市民可彻底告别观看在线视频时恼人的缓冲等待问题。`, time: '2018年12月8日' },
+            { user: '10086', ctt: `北京联通表示，通过基础网络设施的建设，2019年要打造5G之都和千兆之城，北京家庭光纤宽带也将免费提速。此前，联通只在通州极个别小区试点推出过千兆宽带，而目前北京可安装联通宽带的小区，大多已经可以安装千兆宽带。`, time: '2019年6月8日' },
+            { user: '10034579834', ctt: '上证报中国证券网讯 据北京日报6月20日消息，北京即将成为国内首批千兆之城。记者昨天从运营商方面了解到，北京今年开始大规模普及千兆宽带，市民可彻底告别观看在线视频时恼人的缓冲等待问题。', time: '2019年05月11日' },
+            { user: 'University', ctt: `Discover the world's best 1,000 universities with the QS World University Rankings 2020, or check out our extensive subject rankings.`, time: '2018年12月8日' },
+            { user: '108964545', ctt: `分类来看，截至2019年5月底，一线城市、二线城市、三线、四线城市新建商品住宅库存总量分别为2805万平方米、22131万平方米和20069万平方米，环比增速分别为-2.5%、-0.1%和-0.6%，同比增速分别为33.6%、0.3%和8.2%。`, time: '2018年12月8日' },
+            { user: '1034243765', ctt: `基于资金和库存压力，开发商正在加快项目入市速度，争取快速回笼资金。但现实却是，部分城市去化速度加快，有些城市则仍旧不温不火。`, time: '2019年6月8日' },
+            { user: '10034579834', ctt: '在世界前1000名大学最头部的排名变化基本不大，麻省理工、斯坦福和哈佛大学仍然分列前三，牛津大学仍然是排名最高的英国大学。', time: '2019年05月11日' },
+            { user: '95580', ctt: `根据近日曝光的法院执行裁定书，ofo被供应商天津富士达追债2.5亿元，但ofo运营实体东峡大通“名下无房产及土地使用权、无对外投资、无车辆，虽开设了银行账户，但已被其他法院冻结或账户无余额”`, time: '2018年12月8日' },
+        ];
+        let mesStr = '';
+
+        $.each(mesArray, function(index, mesItem) {
+            mesStr += `
+					<li class="mes-list">
+						<span class="read-btn">已读</span>
+						<span class="read-icon"></span>
+						<div class="mes-ctn">
+							<span class="user-icon"></span>
+							<div class="mes-ctt">
+								<p class="user-name">${mesItem.user}</p>
+								<p class="mes-txt">${mesItem.ctt}</p>
+								<p class="mes-time">${mesItem.time}</p>
+							</div>
+						</div>
+						<span class="del-btn">删除</span>
+					</li>`;
+        });
+        $mesLists.html(mesStr);
+        let direction = 'left';
+
+        let $mesList = $('.mes-list');
+        $mesList.each((index, item) => {
+            let $item = $(item);
+            let $redBtn = $item.find(".read-btn"),
+                $redIcon = $item.find(".read-icon"),
+                $delBtn = $item.find(".del-btn");
+
+            let mesListHammer = new Hammer(item);
+            mesListHammer.on('panleft', e => {
+                $item.addClass('del-show').siblings().removeClass('del-show');
+                mesListHammer.on('panright', e => {
+                    $item.removeClass('del-show');
+                })
+
+            })
+
+            // mesListHammer.on('panright', e => {
+            //     $item.addClass('read-show');
+            //     mesListHammer.on('panend', e => {
+            //         $redIcon.remove();
+            //         $item.removeClass('read-show');
+            //     })
+            // })
+
+            $delBtn.on("click", (e) => {
+                $item.css(`transform`, `translateX(0)`);
+                // 过渡完成事件
+                item.addEventListener('transitionend', e => {
+                    $item.css({
+                        opacity: 0,
+                        height: 0,
+                    });
+                    item.addEventListener('transitionend', e => {
+                        $item.remove();
+                    })
+                })
+            })
+
+        })
+    })
+    </script>
+</body>
+
+</html>
