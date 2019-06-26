@@ -19,6 +19,12 @@
 <body>
 	<canvas id="canvas" width="800" height="600"></canvas>
 	<script type="text/javascript">
+		
+		// 角度转弧度
+		function a2r (reg) {
+			return reg/180 * Math.PI;
+		}
+
 		window.onload = () => {
 			let canvas = document.getElementById('canvas');
 			let ctx = canvas.getContext('2d');
@@ -64,9 +70,22 @@
 			ctx.fillRect(240, 70, 60, 30);
 			ctx.strokeRect(240, 70, 60, 30);
 
+			// 清除
 			ctx.beginPath();
 			// ctx.clearRect(0,0,canvas.width, canvas.height);
 			ctx.clearRect(0,0,100,110);
+
+			// 圆形
+			ctx.beginPath();
+			let cx = 400, cy = 300, r = 100;
+			ctx.arc(cx, cy, r, 0, a2r(90), false);
+			ctx.closePath();
+			ctx.stroke();
+
+			ctx.beginPath();
+			let cx2 = 500, cy2 = 400, r2 = 100;
+			ctx.arc(cx, cy, r, 0, a2r(90), true);
+			ctx.fill();
 		}
 	</script>
 </body>
