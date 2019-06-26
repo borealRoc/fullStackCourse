@@ -23,6 +23,7 @@
 			let canvas = document.getElementById('canvas');
 			let ctx = canvas.getContext('2d');
 
+			// 路径闭合
 			ctx.beginPath();
 			ctx.moveTo(80, 10);
 			ctx.lineTo(120, 50);
@@ -32,13 +33,40 @@
 			ctx.strokeStyle = "#34495e";
 			ctx.stroke();
 
-			ctx.beginPath();
+			// 填充
+			ctx.beginPath();  //清除之前一切的路径，重新开始
 			ctx.moveTo(170, 10);
 			ctx.lineTo(210, 50);
 			ctx.lineTo(120, 40);
 			ctx.closePath();
 			ctx.fillStyle = "#27ae60";
 			ctx.fill();
+
+			// 矩形
+			ctx.beginPath();
+			ctx.lineWidth = 1;
+			ctx.strokeStyle = "#b42121";
+			ctx.rect(20, 70, 50, 30);
+			ctx.stroke();
+
+			ctx.beginPath();
+			ctx.lineWidth = 4;
+			ctx.strokeStyle = "#000";
+			ctx.strokeRect(80, 70, 60, 30);
+
+			ctx.beginPath();
+			ctx.fillStyle = "#ea6542";
+			ctx.fillRect(160, 70, 60, 30);
+
+			ctx.beginPath();
+			ctx.lineWidth = 1;
+			ctx.fillStyle = "#ee1542";
+			ctx.fillRect(240, 70, 60, 30);
+			ctx.strokeRect(240, 70, 60, 30);
+
+			ctx.beginPath();
+			// ctx.clearRect(0,0,canvas.width, canvas.height);
+			ctx.clearRect(0,0,100,110);
 		}
 	</script>
 </body>
