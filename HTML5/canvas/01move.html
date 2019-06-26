@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>让canvas图像动起来</title>
+    <style type="text/css">
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    canvas {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -400px;
+        margin-top: -400px;
+        border: solid 1px #999;
+    }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas" width="800" height="800"></canvas>
+    <canvas id="canvas2" width="800" height="800"></canvas>
+    <script type="text/javascript">
+    window.onload = () => {
+        let canvas = document.getElementById('canvas');
+        let ctx = canvas.getContext('2d');
+        let left = 0, top = 0;
+        setInterval(function() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            left += 5;
+            top += 5;
+            if (left === canvas.width - 100) {
+                left = 0;
+            }
+            if (top === canvas.height - 100) {
+                top = 0;
+            }
+
+            ctx.strokeRect(left, top, 100, 100);
+        }, 16);
+
+        // 更好的方法
+        let canvas2 = document.getElementById('canvas2');
+        let ctx2 = canvas2.getContext('2d');
+        let left2 = 700,
+            top2 = 0;
+        requestAnimationFrame(move);
+
+        function move() {
+            ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
+            left2 -= 5;
+            top2 += 5;
+            if (left2 === 0) {
+                left2 = 700;
+            }
+            if (top2 === canvas2.height - 100) {
+                top2 = 0;
+            }
+
+            ctx2.fillRect(left2, top2, 100, 100);
+            requestAnimationFrame(move);
+        }
+    }
+    </script>
+</body>
+
+</html>
