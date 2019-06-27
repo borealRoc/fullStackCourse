@@ -10,20 +10,35 @@
         padding: 0;
         margin: 0;
     }
-
+    
+    .page {
+        padding-top: 20px;
+        text-align: center;
+    }
+    .page .canvas-ctn {
+        display: inline-block;
+        width: 810px;
+        overflow: hidden;
+    }
     canvas {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        margin-left: -400px;
-        margin-top: -400px;
         border: solid 1px #999;
+    }
+    #canvas {
+        float: left;
+    }
+    #canvas2 {
+        float: right;
     }
     </style>
 </head>
 
 <body>
-    <canvas id="canvas" width="400" height="800"></canvas>
+    <div class="page">
+        <div class="canvas-ctn">
+            <canvas id="canvas" width="400" height="800"></canvas>
+            <canvas id="canvas2" width="400" height="800"></canvas>
+        </div>
+    </div>
     <script type="text/javascript">
     // 角度转弧度
     function a2r(reg) {
@@ -31,13 +46,11 @@
     }
 
     window.onload = () => {
+        // 矩形区域的判定
         let canvas = document.getElementById('canvas');
         let ctx = canvas.getContext('2d');
-
-        // 矩形
         ctx.beginPath();
         ctx.strokeRect(100, 300, 200, 200);
-
         // canvas里面的图形无法绑定事件，必须把事件绑定在canvas上
         canvas.addEventListener('mousemove', (e) => {
             // let x = e.clientX - canvas.offsetLeft;
@@ -47,17 +60,39 @@
             let y = e.offsetY;
             let left = 300,
                 top = 500;
-
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             if (x >= 100 && x <= left && y >= 300 && y <= top) {
-                ctx.fillStyle = "#a72222c7";
+                ctx.fillStyle = "#c0392b";
                 ctx.fillRect(100, 300, 200, 200);
             } else {
                 ctx.strokeStyle = "#111";
                 ctx.strokeRect(100, 300, 200, 200);
             }
-
         });
+
+
+        // 圆形区域的判定
+        let canvas2 = document.getElementById('canvas2');
+        let ctx2 = canvas2.getContext('2d');
+        let cx = 200, cy = 400, r = 100;
+        ctx2.beginPath();
+        ctx2.arc(cx, cy, r, 0, a2r(360), false);
+        ctx2.strokeStyle = "#000";
+        ctx2.stroke();
+        canvas2.addEventListener('mousemove', e => {
+            let x = e.offsetX, y = e.offsetY;
+            let dis = Math.sqrt(Math.pow(x-cx,2) + Math.pow(y-cy, 2));
+            ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
+            if (dis <= r) {
+                ctx2.arc(cx, cy, r, 0, a2r(360), false);
+                ctx2.fillStyle = '#27ae60';
+                ctx2.fill()
+            } else {
+                ctx2.arc(cx, cy, r, 0, a2r(360), false);
+                ctx2.strokeStyle = "#000";
+                ctx2.stroke();
+            }
+        })
     }
     </script>
 </body>
