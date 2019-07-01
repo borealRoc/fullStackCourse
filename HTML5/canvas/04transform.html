@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>canvas图形变换</title>
+    <style type="text/css">
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    canvas {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -400px;
+        margin-top: -400px;
+        border: solid 1px #999;
+    }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas" width="800" height="800"></canvas>
+    <script type="text/javascript">
+    // 角度转弧度
+    function a2r(reg) {
+        return reg / 180 * Math.PI;
+    }
+
+    window.onload = () => {
+        let canvas = document.getElementById('canvas');
+        let ctx = canvas.getContext('2d');
+      	
+      	let rect1 = {
+      		x: 200,
+      		y: 300,
+      		w: 400,
+      		h: 200,
+      		ang: 0,
+      		color: '#5098BC'
+      	}
+      	let rect2 = {
+      		x: 200,
+      		y: 300,
+      		w: 400,
+      		h: 200,
+      		ang: 0,
+      		color: '#ff9800'
+      	}
+
+      	requestAnimationFrame(move);
+
+
+      	function rotate (rect) {
+      		ctx.save();  //保存canvas的状态（图形并不保存）—— 颜色、translate、rotate
+
+      		ctx.beginPath();
+      		ctx.translate(rect.w/2 + rect.x, rect.h/2 + rect.y);
+      		ctx.rotate(a2r(rect.ang));
+      		ctx.fillStyle = rect.color;
+      		ctx.fillRect(-rect.w/2, -rect.h/2, rect.w, rect.h);
+      		ctx.restore();
+      	}
+      	function move () {
+      		ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      		rect1.ang++;
+      		rotate (rect1);
+
+      		rect2.ang--;
+      		rotate (rect2);
+
+      		requestAnimationFrame(move);
+      	}
+      	
+
+    }
+    </script>
+</body>
+
+</html>

@@ -86,6 +86,16 @@
 			let cx2 = 500, cy2 = 400, r2 = 100;
 			ctx.arc(cx, cy, r, 0, a2r(90), true);
 			ctx.fill();
+
+			// 文字
+			ctx.beginPath();
+			ctx.font = "italic 50px 'cursive'";
+			ctx.strokeText('canvas基本语法', 400,100);
+
+			ctx.beginPath();
+			ctx.font = 'bold 20px sans-serif';
+			ctx.fillStyle = "#ea6542";
+			ctx.fillText('canvas的纵坐标以文字基线为准',400, 50);
 		}
 	</script>
 </body>
